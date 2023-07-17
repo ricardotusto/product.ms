@@ -19,4 +19,11 @@ public class ProductDTO {
     private double price;
 
     private boolean isAvailable;
+
+    public ProductDTO(String name, String description, double price, boolean isAvailable) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.isAvailable = isAvailable;
+    }
 }

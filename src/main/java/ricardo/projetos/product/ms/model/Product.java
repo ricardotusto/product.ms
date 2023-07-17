@@ -26,6 +26,16 @@ public class Product {
     @Column(name = "isAvailable")
     private boolean isAvailable;
 
+    public Product(String name, String description, double price, boolean isAvailable) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.isAvailable = isAvailable;
+    }
+
+    public Product() {
+    }
+
     /***
      {
      "id": 1,
