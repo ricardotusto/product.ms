@@ -44,4 +44,15 @@ public class ProductServiceImpl implements ProductService{
 
         return responses;
     }
+
+    @Override
+    public Optional<ProductDTO> getById(Long id) {
+        Optional<Product> product = repository.findById(id);
+
+        if (product.isPresent()){
+            return Optional.of(mapper.map(product, ProductDTO.class));
+        }
+        return Optional.empty();
+    }
+
 }
