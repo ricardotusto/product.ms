@@ -1,5 +1,6 @@
 package ricardo.projetos.product.ms.service;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ricardo.projetos.product.ms.dto.ProductDTO;
@@ -16,21 +17,14 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Optional<ProductDTO> create(ProductDTO request) {
-        Product product = new Product(
-                request.getName(),
-                request.getDescription(),
-                request.getPrice(),
-                request.isAvailable()
-        );
+
+        ModelMapper mapper = new ModelMapper();
+
+        Product product = mapper.map(request, Product.class);
 
         repository.saveAndFlush(product);
 
-        ProductDTO response = new ProductDTO(
-                product.getName(),
-                product.getDescription(),
-                product.getPrice(),
-                product.isAvailable()
-        );
+        ProductDTO response = mapper.map(product, ProductDTO.class);
 
         return Optional.of(response);
     }
