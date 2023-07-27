@@ -55,6 +55,20 @@ public class ProductServiceImpl implements ProductService{
         return Optional.empty();
     }
 
+    @Override
+    public Optional<ProductDTO> update(Long id, ProductDTO request) {
+        Optional<Product> product = repository.findById(id);
+
+        if (product.isPresent()){
+            product.get().setDescription(request.getDescription());
+            product.get().setPrice(request.getPrice());
+
+            return Optional.of(mapper.map(product, ProductDTO.class));
+        }
+
+        return Optional.empty();
+    }
+
     // delete logico
     @Override
     public boolean delete(Long id) {

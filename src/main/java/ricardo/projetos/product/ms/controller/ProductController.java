@@ -43,4 +43,15 @@ public class ProductController {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody @Valid ProductDTO request){
+        Optional<ProductDTO> response = service.update(id, request);
+
+        if (response.isPresent()){
+            return ResponseEntity.ok(response.get());
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }
