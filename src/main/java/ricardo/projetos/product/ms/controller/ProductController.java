@@ -32,4 +32,15 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getAll(){
         return ResponseEntity.ok(service.getAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> getById(@PathVariable Long id){
+        Optional<ProductDTO> response = service.getById(id);
+
+        if (response.isPresent()){
+            return ResponseEntity.ok(response.get());
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
 }
