@@ -55,4 +55,26 @@ public class ProductServiceImpl implements ProductService{
         return Optional.empty();
     }
 
+    // delete logico
+    @Override
+    public boolean delete(Long id) {
+        Optional<Product> product = repository.findById(id);
+
+        if (product.isPresent()){
+            product.get().setAvailable(false);
+            return true;
+        }
+        return false;
+    }
+
+    // delete fisico (elimina o registo do produto )
+    private boolean hardDelete(Long id){
+        Optional<Product> product = repository.findById(id);
+        if (product.isPresent()){
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 }

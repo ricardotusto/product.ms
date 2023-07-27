@@ -11,4 +11,6 @@ public interface ProductService {
     List<ProductDTO> getAll();
 
     Optional<ProductDTO> getById(Long id);
+
+    boolean delete(Long id);
 }
