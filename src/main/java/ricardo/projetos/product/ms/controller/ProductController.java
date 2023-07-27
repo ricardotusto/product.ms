@@ -54,4 +54,12 @@ public class ProductController {
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<void> delete(@PathVariable Long id){
+
+        return  service.delete(id)
+                ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
