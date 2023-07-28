@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService{
         if (product.isPresent()){
             product.get().setDescription(request.getDescription());
             product.get().setPrice(request.getPrice());
-
+            repository.save(product.get());
             return Optional.of(mapper.map(product, ProductDTO.class));
         }
 
