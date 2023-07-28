@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Optional<ProductDTO> create(ProductDTO request) {
-
+        request.setAvailable(true);
         Product product = mapper.map(request, Product.class);
 
         repository.saveAndFlush(product);
