@@ -76,6 +76,7 @@ public class ProductServiceImpl implements ProductService{
 
         if (product.isPresent()){
             product.get().setAvailable(false);
+            repository.save(product.get());
             return true;
         }
         return false;
