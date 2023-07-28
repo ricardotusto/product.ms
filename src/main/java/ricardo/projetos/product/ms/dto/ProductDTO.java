@@ -26,4 +26,7 @@ public class ProductDTO {
         this.price = price;
         this.isAvailable = isAvailable;
     }
+
+    public ProductDTO() {
+    }
 }
